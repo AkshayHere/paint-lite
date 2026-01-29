@@ -1,0 +1,50 @@
+.app {
+  font-family: sans-serif;
+}
+
+.toolbar {
+  padding: 8px;
+  background: #3347db;
+  color: white;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel {
+  width: 20%;
+  min-width: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.layers {
+  width: 20%;
+  min-width: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.canvas {
+  border: 1px solid #000;
+  margin: 10px;
+}
+
+.paint-lite-header {
+  text-align: end;
+  position: absolute;
+  right: 25px;
+  top: 17px;
+  font-weight: 600;
+}
+
+.color-input {
+  width: 100%;
+  max-width: 100px;
+}

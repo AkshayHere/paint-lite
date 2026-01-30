@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .app {
   font-family: sans-serif;
 }
@@ -6,6 +10,10 @@
   padding: 8px;
   background: #3347db;
   color: white;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .main {
@@ -76,4 +84,31 @@
 .color-input {
   width: 100%;
   max-width: 100px;
+}
+
+/** Brush Controls **/
+.panel-element {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.panel-text {
+  width: 20%;
+}
+
+.panel-picker {
+  width: 60%;
+}
+
+.panel-button {
+  width: 20%;
+  padding: 4px;
+}
+
+.panel-select {
+  width: 40%;
+  padding: 4px;
 }

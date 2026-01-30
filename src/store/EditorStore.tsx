@@ -1,39 +1,79 @@
 import { makeAutoObservable } from "mobx";
 import type { Layer } from "../types/Layer";
-import { DEFAULT_SHAPE_COLOR } from "../constants/tools";
-import { ShapeType } from "../enums/CommonType";
-
-export type ToolType = "none" | "shape" | "fill";
-// export type ShapeType = "rect" | "circle";
-
+import { LayerType, ShapeType, ToolType } from "../enums/CommonType";
+import { DEFAULT_BG_COLOR, DEFAULT_BRUSH_COLOR, DEFAULT_BRUSH_SIZE, DEFAULT_SHAPE_COLOR } from "../constants/ui";
 class EditorStore {
-  currentTool: ToolType = "none";
+    brushColor: string = DEFAULT_BRUSH_COLOR;
+    brushSize: number = DEFAULT_BRUSH_SIZE;
+    currentTool: ToolType = ToolType.None;
 
-  // Shape tool options
-  shapeType: ShapeType = ShapeType.Rect;
-  shapeColor: string = DEFAULT_SHAPE_COLOR;
+    isDrawing = false;
 
-  // Fill tool option
-  fillColor: string = "#ffffff";
+    // Shape tool options
+    shapeType: ShapeType = ShapeType.Rect;
+    shapeColor: string = DEFAULT_SHAPE_COLOR;
 
-  layers: Layer[] = [];
+    // Fill tool option
+    fillColor: string = DEFAULT_BG_COLOR;
 
-  constructor() {
-    makeAutoObservable(this);
-  }
+    layers: Layer[] = [];
+    currentPath: { x: number; y: number }[] = [];
 
-  setTool(tool: ToolType) {
-    this.currentTool = tool;
-  }
+    constructor() {
+        makeAutoObservable(this);
+    }
 
-  addLayer(layer: Layer) {
-    console.log("layer: ", layer);
-    this.layers.push(layer);
-  }
+    setShapeColor(color: string) {
+        this.shapeColor = color;
+    }
 
-  removeLayer(id: string) {
-    this.layers = this.layers.filter(layer => layer.id !== id);
-  }
+    setFillColor(color: string) {
+        this.fillColor = color;
+    }
+
+    setBrushColor(color: string) {
+        this.brushColor = color;
+    }
+
+    setTool(tool: ToolType) {
+        this.currentTool = tool;
+    }
+
+    addLayer(layer: Layer) {
+        console.log("layer: ", layer);
+        this.layers.push(layer);
+    }
+
+    removeLayer(id: string) {
+        this.layers = this.layers.filter(layer => layer.id !== id);
+    }
+
+    startPath(point: { x: number; y: number }) {
+        this.isDrawing = true;
+        this.currentPath = [point];
+    }
+
+    addPoint(point: { x: number; y: number }) {
+        if (!this.isDrawing) return;
+        this.currentPath.push(point);
+    }
+
+    endPath() {
+        if (!this.isDrawing || this.currentPath.length < 2) return;
+
+        this.addLayer({
+            id: crypto.randomUUID(),
+            type: LayerType.Brush,
+            data: {
+                points: this.currentPath,
+                color: this.brushColor,
+                size: this.brushSize
+            }
+        });
+
+        this.isDrawing = false;
+        this.currentPath = [];
+    }
 }
 
 export const editorStore = new EditorStore();

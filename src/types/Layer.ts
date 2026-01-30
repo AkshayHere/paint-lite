@@ -22,4 +22,20 @@ export type Layer =
       id: string;
       type: LayerType.Fill;
       data: FillLayerData;
+    }
+  | {
+      id: string;
+      type: LayerType.Brush;
+      data: BrushLayerData;
     };
+
+export interface Point {
+  x: number;
+  y: number;
+}
+
+export interface BrushLayerData {
+  points: Point[];
+  color: string;
+  size: number;
+}

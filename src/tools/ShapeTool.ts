@@ -1,3 +1,4 @@
+import { SHAPE_SIZES } from "../constants/ui";
 import { LayerType } from "../enums/CommonType";
 import { editorStore } from "../store/EditorStore";
 import { v4 as uuid } from "uuid";
@@ -11,7 +12,7 @@ export function handleShapeClick(x: number, y: number) {
       y,
       shape: editorStore.shapeType,
       color: editorStore.shapeColor,
-      size: 60
+      size: SHAPE_SIZES[editorStore.shapeType]
     }
   });
 }

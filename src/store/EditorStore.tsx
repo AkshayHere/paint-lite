@@ -2,6 +2,7 @@ import { makeAutoObservable } from "mobx";
 import type { Layer } from "../types/Layer";
 import { LayerType, ShapeType, ToolType } from "../enums/CommonType";
 import { DEFAULT_BG_COLOR, DEFAULT_BRUSH_COLOR, DEFAULT_BRUSH_SIZE, DEFAULT_SHAPE_COLOR } from "../constants/ui";
+import { v4 as uuid } from "uuid";
 class EditorStore {
     brushColor: string = DEFAULT_BRUSH_COLOR;
     brushSize: number = DEFAULT_BRUSH_SIZE;
@@ -62,7 +63,7 @@ class EditorStore {
         if (!this.isDrawing || this.currentPath.length < 2) return;
 
         this.addLayer({
-            id: crypto.randomUUID(),
+            id: uuid(),
             type: LayerType.Brush,
             data: {
                 points: this.currentPath,

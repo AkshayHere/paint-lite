@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
-import { editorStore } from "../store/EditorStore";
-import { applyFill } from "../tools/FillTool";
-import { ShapeType, ToolType } from "../enums/CommonType";
+import { editorStore } from "@/store/EditorStore";
+import { applyFill } from "@/tools/FillTool";
+import { ShapeType, ToolType } from "@/enums/CommonType";
 
 export const ControlPanel = observer(() => {
     switch (editorStore.currentTool) {
@@ -10,6 +10,8 @@ export const ControlPanel = observer(() => {
                 <div className="panel">
                     <h3>Shape Tool</h3>
                     <select
+                        id="shapeType"
+                        data-testid="shapeType"
                         value={editorStore.shapeType}
                         onChange={e => (editorStore.shapeType = e.target.value as ShapeType)}
                     >
@@ -19,6 +21,7 @@ export const ControlPanel = observer(() => {
                     <br />
                     <input
                         id="shapeColor"
+                        data-testid="shapeColor"
                         type="color"
                         className="color-input"
                         value={editorStore.shapeColor}
@@ -32,6 +35,7 @@ export const ControlPanel = observer(() => {
                     <h3>Fill Tool</h3>
                     <input
                         id="fillColor"
+                        data-testid="fillColor"
                         type="color"
                         className="color-input"
                         value={editorStore.fillColor}
@@ -49,12 +53,12 @@ export const ControlPanel = observer(() => {
                         Color
                         <input
                             id="brushColor"
+                            data-testid="brushColor"
                             type="color"
                             value={editorStore.brushColor}
                             onChange={e => editorStore.setBrushColor(e.target.value)}
                         />
                     </label>
-
                     <label>
                         Size
                         <input

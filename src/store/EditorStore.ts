@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import type { Layer } from "../types/Layer";
 import { LayerType, ShapeType, ToolType } from "../enums/CommonType";
-import { DEFAULT_BG_COLOR, DEFAULT_BRUSH_COLOR, DEFAULT_BRUSH_SIZE, DEFAULT_SHAPE_COLOR } from "../constants/ui";
+import { DEFAULT_FILL_COLOR, DEFAULT_BRUSH_COLOR, DEFAULT_BRUSH_SIZE, DEFAULT_SHAPE_COLOR } from "../constants/ui";
 import { v4 as uuid } from "uuid";
 class EditorStore {
     brushColor: string = DEFAULT_BRUSH_COLOR;
@@ -15,7 +15,7 @@ class EditorStore {
     shapeColor: string = DEFAULT_SHAPE_COLOR;
 
     // Fill tool option
-    fillColor: string = DEFAULT_BG_COLOR;
+    fillColor: string = DEFAULT_FILL_COLOR;
 
     layers: Layer[] = [];
     currentPath: { x: number; y: number }[] = [];
@@ -41,7 +41,6 @@ class EditorStore {
     }
 
     addLayer(layer: Layer) {
-        console.log("layer: ", layer);
         this.layers.push(layer);
     }
 

@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 import { autorun } from "mobx";
 import { useEffect, useRef } from "react";
-import { editorStore } from "../store/EditorStore";
-import { handleShapeClick } from "../tools/ShapeTool";
-import { LayerType, ShapeType, ToolType } from "../enums/CommonType";
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/ui";
+import { editorStore } from "@/store/EditorStore";
+import { handleShapeClick } from "@/tools/ShapeTool";
+import { LayerType, ShapeType, ToolType } from "@/enums/CommonType";
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from "@/constants/ui";
 
 export const CanvasView = observer(() => {
     const canvasRef = useRef<HTMLCanvasElement>(null);

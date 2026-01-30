@@ -1,6 +1,6 @@
-import { SHAPE_SIZES } from "../constants/ui";
-import { LayerType } from "../enums/CommonType";
-import { editorStore } from "../store/EditorStore";
+import { SHAPE_SIZES } from "@/constants/ui";
+import { LayerType } from "@/enums/CommonType";
+import { editorStore } from "@/store/EditorStore";
 import { v4 as uuid } from "uuid";
 
 export function handleShapeClick(x: number, y: number) {
